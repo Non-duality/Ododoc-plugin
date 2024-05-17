@@ -1,0 +1,38 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+  <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+  <id>com.ssafy.ododocintellij</id>
+
+  <!-- Public plugin name should be written in Title Case.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+  <name>Ododoc</name>
+  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+  <vendor email="non_duality@naver.com" url="https://k10d209.p.ssafy.io/">Ododoc</vendor>
+
+  <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+       Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+  <description><![CDATA[
+    Ododoc 서비스 이용을 위한 Intellij Plugin 입니다.<br>
+    프로세스 시작과 종료, 터미널 로그를 감지하여 여러분의 코드를 자동으로 Ododoc 사이트에 정리해드립니다.<br>
+  ]]></description>
+
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <!-- Extension points defined by the plugin.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <extensions defaultExtensionNs="com.intellij">
+    <postStartupActivity implementation="com.ssafy.ododocintellij.StartUpActivity"/>
+    <projectService serviceImplementation="com.ssafy.ododocintellij.DisposableService"/>
+  </extensions>
+
+  <actions>
+    <action id="OpenOdodocPlugin" class="com.ssafy.ododocintellij.OpenOdodocPlugin" text="Ododoc"
+            description="Open Ododoc" icon="/image/button/ododoc.png">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt C"/>
+    </action>
+  </actions>
+</idea-plugin>
